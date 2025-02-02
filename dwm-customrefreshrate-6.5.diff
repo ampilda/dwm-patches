@@ -1,0 +1,34 @@
+diff --git a/config.def.h b/config.def.h
+index 9efa774..268a577 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,5 +1,7 @@
+ /* See LICENSE file for copyright and license details. */
+ 
++static const unsigned int refresh_rate = 60;    /* refresh rate of your monitor */
++
+ /* appearance */
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+diff --git a/dwm.c b/dwm.c
+index 1443802..f8ee403 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1171,7 +1171,7 @@ movemouse(const Arg *arg)
+ 			handler[ev.type](&ev);
+ 			break;
+ 		case MotionNotify:
+-			if ((ev.xmotion.time - lasttime) <= (1000 / 60))
++			if ((ev.xmotion.time - lasttime) <= (1000 / refresh_rate))
+ 				continue;
+ 			lasttime = ev.xmotion.time;
+ 
+@@ -1325,7 +1325,7 @@ resizemouse(const Arg *arg)
+ 			handler[ev.type](&ev);
+ 			break;
+ 		case MotionNotify:
+-			if ((ev.xmotion.time - lasttime) <= (1000 / 60))
++			if ((ev.xmotion.time - lasttime) <= (1000 / refresh_rate))
+ 				continue;
+ 			lasttime = ev.xmotion.time;
+ 
